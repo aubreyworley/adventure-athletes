@@ -4,6 +4,13 @@ var express = require('express'),
     session = require('express-session')
     mongoose = require('mongoose');
 
+//mongoose
+mongoose.connect(
+  process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+   'mongodb://localhost/adventure-athletes'
+);
+
 // API
 
 // get all posts
@@ -41,9 +48,6 @@ app.get('/api/posts/:id', function (req, res) {
 
 var Post = require('.models/post');
 
-//mongoose
-mongoose.connect('mongodb://localhost/adventure-athletes');
-
 // middleware
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -80,6 +84,4 @@ app.get('/signup', function (req, res) {
 });
 
 // listen on port 3000
-app.listen(3000, function () {
-  console.log('server started on locahost:3000');
-});
+app.listen(process.env.PORT || 3000);
