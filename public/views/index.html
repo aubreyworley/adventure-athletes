@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
+<head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      
       <!-- bootstrap css -->
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
       <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
       <!-- custom styles -->
       <link type="text/css" rel="stylesheet" href="styles/style.css">
 
       <!-- Google Maps API -->
-      <script src="https://maps.googleapis.com/maps/api/js"></script>
       <script src="https://maps.googleapis.com/maps/api/js"></script>
       <script>
       function initialize() {
@@ -30,38 +29,88 @@
       
 
       <title>Adventures</title>
-  </head>
-
-  <body>
+</head>
+<body width="1024" height="273">
 
   <!-- header -->
-  <div class="well">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Login</a>
+        </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right" id="nav-links">
+          <!-- data from nav-template goes here -->
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
+
     <div class="container">
       <div class="page-header">
         <h1>Bay Area Adventure Athletes</h1>
-        <p>Train for the outdoors in the outdoors</p>
+        <p>Mountaineer training group: train for the outdoors in the outdoors.</p>
       </div>
     </div>
   </div>
 
+  <div class="container" style="text-align:center">
+      <p><a href="http://imgur.com/rgSf1h3"><img src="http://i.imgur.com/rgSf1h3.jpg?1" title="source: imgur.com" /></a>
+  </div>
+
   <div class="container">
     <div class="row">
-    <p><a href="http://imgur.com/rgSf1h3"><img src="http://i.imgur.com/rgSf1h3.jpg?1" title="source: imgur.com" /></a>
       <h1 class="page-title entry-title">About</h1>
         <p> With all the fitness trends and expensive gyms, it may be difficult to find an affordable fitness community of adventure athletes who train for the outdoors in the outdoors. Mountaineer Training Club provides exactly that: a place for people to train together, plan trips together, and work towards conquering that next mountain peak together.</p>
     </div>
   </div>
 
-  <!-- Google Maps -->
-  <div id="map-canvas"></div>
+  <div class="container">
+      <h2>Outdoor Workouts and Meetups</h2>
+        <p> This Week's Workout Schedule:</p>
+       <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td>Strength and Power Training</td>
+        <td></td>
+        <td>Aerobic Interval Training </td>
+        <td></td>
+        <td>Balance and Agility Training</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <p> This Week's Workout Locations:</p>
+   <!-- Google Maps -->
+    <div id="map-canvas"></div>
+  </div>
 
-  
-  <!-- new post form-->
+   
+        <!-- new post form-->
   <div class="container" align="center">
     <div class="row">
       <form class="pure-form" id="new-post">
         <div class="pure-input-1">
-          <input type="text" class="form-control" id="new-text" placeholder="What's Your Next Adventure?" autofocus>
+          <input type="text" class="form-control" id="new-post" placeholder="What's Your Next Adventure?" autofocus>
         </div>
         <br>
         <div>
@@ -112,6 +161,12 @@
 </div>
 </div>
 
+  <!-- list of posts(appended to page with dynamically with ajax, underscore, jquery) -->
+        <ul class="list-group" id="post-list"></ul>
+      </div>
+    </div>
+  </div>
+
     <!-- jquery -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
       
@@ -122,18 +177,57 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
   <!-- custom script -->
-  <script type="text/javascript" src="script.js"></script>
+ <script type="text/javascript" src="scripts/posts.js"></script>
 
   <!-- underscore template -->
   <script type="text/template" id="post-template">
-    <div class="post">
-      <p>
-        <span class="post-text"><%= post %> </span>
-        &nbsp;
-        <button type="button" class="close delete" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </p>
-      <hr>
-    </div>
+    <li class="list-group-item post" id="post-<%= _id %>" data-id="<%= _id %>">
+  
+    // <!-- phrase label (word) -->
+   <span class="label label-default"><%= adventure %></span>
+
+   // <!-- delete button -->
+      <button class="close right-side delete-post" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      // <!-- edit link (pencil icon) to toggle form -->
+      <a class="edit-pencil" data-toggle="collapse" data-target="#update-<%= _id %>">
+        <span class="glyphicon glyphicon-pencil edit"></span>
+      </a>
+
+       // <!-- form to update phrase -->
+      <div class="collapse" id="update-<%= _id %>">
+        <br>
+        <form class="pure-form update-post">
+          <input type="text" class="form-control updated-adventure" value="<%= adventure %>" placeholder="New adventure?">
+          <input type="submit" class="btn btn-default" value="Update Post">
+        </form>
+      </div>
+
+      // <!-- add note link (file icon) to toggle new note form -->
+      <a class="note-file" data-toggle="collapse" data-target="#new-note-<%= _id %>">
+        <span class="glyphicon glyphicon-file"></span>
+      </a>
+
+      // <!-- form to add new note -->
+      <div class="collapse" id="new-note-<%= _id %>">
+        <br>
+        <form class="form-inline new-note">
+          <input type="text" class="form-control note-text" placeholder="Note?">
+          <input type="submit" class="btn btn-default" value="Add Note">
+        </form>
+      </div>
+
+      <!-- list of notes -->
+      <div class="note-list" data-phrase-id="<%= _id %>"></div>
+    </li>
   </script>
+
+  <script type="text/template" id="note-template">
+    <p class="text-muted">> <%= text %></p>
+  </script>
+
+  
 </body>
 </html>
