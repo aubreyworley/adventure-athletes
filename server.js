@@ -47,8 +47,6 @@ app.get('/api/posts/:id', function (req, res) {
 
 // var Post = require('.models/post');
 
-
-
 // middleware
 app.use(bodyParser.urlencoded({extended: true}));
 
