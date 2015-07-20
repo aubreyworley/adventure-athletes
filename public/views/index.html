@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- bootstrap css -->
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+      <!-- custom styles -->
+      <link type="text/css" rel="stylesheet" href="styles/style.css">
+
+      <!-- Google Maps API -->
+      <script src="https://maps.googleapis.com/maps/api/js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js"></script>
+      <script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map-canvas');
+        var mapOptions = {
+          center: new google.maps.LatLng(44.5403, -78.5463),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+      </script>
+
+      
+
+      <title>Adventures</title>
+  </head>
+
+  <body>
+
+  <!-- header -->
+  <div class="well">
+    <div class="container">
+      <div class="page-header">
+        <h1>Bay Area Adventure Athletes</h1>
+        <p>Train for the outdoors in the outdoors</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+    <p><a href="http://imgur.com/rgSf1h3"><img src="http://i.imgur.com/rgSf1h3.jpg?1" title="source: imgur.com" /></a>
+      <h1 class="page-title entry-title">About</h1>
+        <p> With all the fitness trends and expensive gyms, it may be difficult to find an affordable fitness community of adventure athletes who train for the outdoors in the outdoors. Mountaineer Training Club provides exactly that: a place for people to train together, plan trips together, and work towards conquering that next mountain peak together.</p>
+    </div>
+  </div>
+
+  <!-- Google Maps -->
+  <div id="map-canvas"></div>
+
+  
+  <!-- new post form-->
+  <div class="container" align="center">
+    <div class="row">
+      <form class="pure-form" id="new-post">
+        <div class="pure-input-1">
+          <input type="text" class="form-control" id="new-text" placeholder="What's Your Next Adventure?" autofocus>
+        </div>
+        <br>
+        <div>
+          <input type="submit" class="btn btn-success" value="Post to our Page">
+        </div>
+      </form>
+      <br>
+    </div>
+  </div>
+
+<!-- new member form-->
+  <div class="well">
+    <div class="container">
+    <footer class ="site-footer">
+    <div class="col-sm-5 form-box">
+      <div class="form-top">
+        <div class="form-top-left">
+        <h3>Become a Member</h3>
+            <p>Fill in the form below to get weekly workout schedules and Mountaineer Meetup Info:</p>
+        </div>
+        <div class="form-top-right">
+          <i class="fa fa-pencil"></i>
+        </div>
+      </div>
+      <div class="form-bottom">
+        <form role="form" action="" method="post" class="registration-form">
+        <div class="form-group">
+          <label class="sr-only" for="form-first-name">First name</label>
+          <input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="form-last-name">Last name</label>
+          <input type="text" name="form-last-name" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="form-email">Email</label>
+            <input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="form-about-yourself">About yourself</label>
+            <textarea name="form-about-yourself" placeholder="About yourself..." class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+          </div>
+          <button type="submit" class="btn">Sign me up!</button>
+        </form>
+      </div>
+    </div>
+  </footer>
+</div>
+</div>
+
+    <!-- jquery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+      
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <!-- underscore -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+  <!-- custom script -->
+  <script type="text/javascript" src="script.js"></script>
+
+  <!-- underscore template -->
+  <script type="text/template" id="post-template">
+    <div class="post">
+      <p>
+        <span class="post-text"><%= post %> </span>
+        &nbsp;
+        <button type="button" class="close delete" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </p>
+      <hr>
+    </div>
+  </script>
+</body>
+</html>
