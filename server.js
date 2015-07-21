@@ -2,7 +2,7 @@ var express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
   Post = require('models/post');
-  Member = require('./models/user'),
+  Member = require('./models/member'),
   mongoose = require('mongoose'),
   session = require('express-session');
 

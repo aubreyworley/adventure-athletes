@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt'),
-    salt = bcrypt.genSaltSync(10);
+    salt = bcrypt.genSaltSync(10),
     Post = require('./post');
 
   var MemberSchema = new Schema({
