@@ -33,21 +33,21 @@
       <center>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#signup-modal">Become a Member</a>
+            <li class="active"><a href="#s">Become a Member</a>
             </li>
           </ul>
           <!-- login -->
-          <form class="navbar-form navbar-right" role="search">
+          <form class="navbar-form navbar-right" method="post" action="/profile">
             <div class="form-group">
-              <input type="text" class="form-control" name="username" placeholder="Username">
+              <input type="email" class="form-control" name="member[email]" placeholder="Email">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" name="password" placeholder="Password">
+              <input type="password" class="form-control" name="member[password]" placeholder="Password">
             </div>
-              <button type="submit" class="btn btn-default">Sign In</button>
+              <button type="submit" class="btn btn-default">Log In</button>
           </form>
         </div>
-      </center>
+        </center>
       </div>
    
 
@@ -64,7 +64,7 @@
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
-    </nav>
+    
 
 <!-- login modal -->
   <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModal">
@@ -163,7 +163,7 @@
   </div>
   
 
-<!-- new member form-->
+<!-- new member sign up form-->
   <div class="well">
     <div class="container" id="signup-modal">
       
@@ -189,13 +189,16 @@
             <input type="text" name="member[lastName]" placeholder="Last name" class="form-last-name form-control" id="form-last-name">
           </div>
           <div class="form-group">
-            <label class="sr-only" for="form-email">Email</label>
-            <input type="text" name="member[email]" placeholder="Email" class="form-email form-control" id="form-email">
-          </div>
-          
-          <div class="form-group">
             <label class="sr-only" for="form-about-yourself">About yourself</label>
             <textarea name="member[about]" placeholder="About yourself" class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="form-email">Email</label>
+            <input type="email" name="member[email]" placeholder="Email" class="form-email form-control" id="form-email">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="form-password">password</label>
+            <input type="password" name="member[password]" placeholder="Password" class="form-email form-control" id="form-email">
           </div>
           <button type="submit" class="btn">Sign me up!</button>
         </form>

@@ -1,6 +1,6 @@
 $(function() {
 
-  // `membersController` holds users functionality
+  // `membersController` holds members functionality
   var membersController = {
 
     // compile underscore templates
@@ -9,59 +9,59 @@ $(function() {
 
     // get current (logged-in) member
     show: function() {
-      // AJAX call to server to GET /api/users/current
+      // AJAX call to server to GET /api/members/current
       $.get('/api/members/current', function(member) {
         console.log(member);
 
         // pass member through profile template
         $memberHtml = $(membersController.template({currentMember: member}));
 
-        // append user HTML to page
+        // append member HTML to page
         $('#show-member').append($memberHtml);
 
-        // iterate through user's logs
-        _.each(member.logs, function(log, index) {
-          console.log(log);
+        // iterate through member's posts
+        _.each(member.posts, function(post, index) {
+          console.log(post);
 
-          // pass log through underscore template
+          // pass post through underscore template
           $postHtml = $(membersController.postTemplate(post));
 
-          // append log HTML to page
+          // append member HTML to page
           $('#member-post-list').append($postHtml);
         });
       });
     },
 
-    // create new log for current user
-    createPost: function(typeData, caloriesData) {
-      // define object with our log data
+    // create new post for current member
+    createPost: function(adventureData) {
+      // define object with our post data
       var postData = {adventure: adventureData};
       
-      // AJAX call to server to POST /api/users/current/logs
+      // AJAX call to server to POST /api/members/current/posts
       $.post('/api/members/current/posts', postData, function(newPost) {
-        console.log(newLog);
+        console.log(newPost);
         
-        // pass log through underscore template
+        // pass post through underscore template
         var $postHtml = $(membersController.postTemplate(newPost));
         console.log($postHtml);
 
-        // append log HTML to page
+        // append post HTML to page
         $('#member-post-list').append($postHtml);
       });
     },
 
     setupView: function() {
-      // get current user
+      // get current member
       membersController.show();
 
-      // add submit event on new log form
+      // add submit event on new post form
       $('#new-post').on('submit', function(event) {
         event.preventDefault();
         
-        // grab log type and calories from form
+        // grab post adventure from form
         var postAdventure = $('#adventure').val();
 
-        // create new log
+        // create new post
         membersController.createPost(postAdventure);
 
         // reset the form

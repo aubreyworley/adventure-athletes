@@ -38,7 +38,7 @@ var mongoose = require('mongoose'),
   });
 };
 
-//authenticate user at login
+//authenticate member at log in
 MemberSchema.statics.authenticate = function (email, password, callback) {
   //find member by email entered at log in
   this.findOne({email: email}, function (err, member) {

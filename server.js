@@ -75,6 +75,49 @@ app.get('/profile', function (req, res) {
   });
 });
 
+// set up route for /members JSON
+// app.get('/members', function(req, res) {
+//   res.json(members);
+// });
+
+// // signup route with placeholder response
+// app.get('/signup', function(req, res) {
+//   res.send('coming soon');
+// });
+
+// // get one post 
+// app.get('/api/posts/:id', function(req, res) {
+//   // set the value of the id
+//   var targetId = req.params.id;
+
+//   // find post in db by id
+//   Post.findOne({
+//     _id: targetId
+//   }, function(err, foundPost) {
+//     res.json(foundPost);
+//   });
+// });
+
+// update post
+app.put('/api/posts/:id', function(req, res) {
+  // set the value of the id
+  var targetId = req.params.id;
+
+  // find post in db by id
+  Post.findOne({
+    _id: targetId
+  }, function(err, foundPost) {
+    // update the post's adventure
+    foundPost.adventure = req.body.adventure;
+
+    // save updated post in db
+    foundPost.save(function(err, savedPost) {
+      res.json(savedPost);
+    });
+  });
+});
+
+
 // AUTH ROUTES (SIGN UP, LOG IN, LOG OUT)
 
 // create new member with secure password
@@ -153,83 +196,6 @@ app.post('/api/posts', function (req, res) {
     res.json(savedPost);
   });
 });
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
- 
-// // get all posts
-// app.get('/api/posts', function(req, res) {
-//   // find all posts in db
-//   Post.find(function(err, posts) {
-//     res.json(posts);
-//   });
-// });
-
-// // get one post 
-// app.get('/api/posts/:id', function(req, res) {
-//   // set the value of the id
-//   var targetId = req.params.id;
-
-//   // find post in db by id
-//   Post.findOne({
-//     _id: targetId
-//   }, function(err, foundPost) {
-//     res.json(foundPost);
-//   });
-// });
-
-// // update post
-// app.put('/api/posts/:id', function(req, res) {
-//   // set the value of the id
-//   var targetId = req.params.id;
-
-//   // find post in db by id
-//   Post.findOne({
-//     _id: targetId
-//   }, function(err, foundPost) {
-//     // update the post's adventure
-//     foundPost.adventure = req.body.adventure;
-
-//     // save updated post in db
-//     foundPost.save(function(err, savedPost) {
-//       res.json(savedPost);
-//     });
-//   });
-// });
-
-
-// set up route for /members JSON
-// app.get('/members', function(req, res) {
-//   res.json(members);
-// });
-
-// // signup route with placeholder response
-// app.get('/signup', function(req, res) {
-//   res.send('coming soon');
-// });
-
-
-
-
-
-
-
-
-
-
-
 
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
