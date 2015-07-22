@@ -1,12 +1,17 @@
 var express = require('express'),
-  app = express(),
-  bodyParser = require('body-parser'),
-  Post = require('models/post');
-  Member = require('./models/member'),
-  mongoose = require('mongoose'),
-  session = require('express-session');
+    app = express(),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    _ = require('underscore'),
+    bcrypt = require('bcrypt'),
+    salt = bcrypt.genSaltSync(10),
+    session = require('express-session');
 
-//mongoose
+// mongoose models
+var Post = require('./models/post');
+var Member = require('./models/member');
+
+// connect to mongodb
 mongoose.connect(
   process.env.MONGOLAB_URI ||
   process.env.MONGOHQ_URL ||
@@ -15,6 +20,7 @@ mongoose.connect(
 
 // middleware
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 app.use(session({
@@ -26,23 +32,23 @@ app.use(session({
 
 // middleware to manage sessions
 app.use('/', function (req, res, next) {
-  // saves userId in session for logged-in user
-  req.login = function (user) {
-    req.session.userId = user.id;
+  // saves memberId in session for logged-in member
+  req.login = function (member) {
+    req.session.memberId = member.id;
   };
 
-  // finds user currently logged in based on `session.userId`
-  req.currentUser = function (callback) {
-    User.findOne({_id: req.session.userId}, function (err, user) {
-      req.user = user;
-      callback(null, user);
+  // finds member currently logged in based on `session.memberId`
+  req.currentMember = function (callback) {
+    Member.findOne({_id: req.session.memberId}, function (err, member) {
+      req.member = member;
+      callback(null, member);
     });
   };
 
-    // destroy `session.userId` to log out user
+    // destroy `session.memberId` to log out member
   req.logout = function () {
-    req.session.userId = null;
-    req.user = null;
+    req.session.memberId = null;
+    req.member = null;
   };
 
   next();
@@ -50,145 +56,182 @@ app.use('/', function (req, res, next) {
 
 // STATIC ROUTES
 
-// homepage
+// set up root route to respond with index.html
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/public/views/index.html');
 });
 
 // profile page
 app.get('/profile', function (req, res) {
-  // check for current (logged-in) user
-  req.currentUser(function (err, user) {
-    // show profile if logged-in user
-    if (user) {
+  // check for current (logged-in) member
+  req.currentMember(function (err, member) {
+    // show profile if logged-in member
+    if (member) {
       res.sendFile(__dirname + '/public/views/profile.html');
-    // redirect if no user logged in
+    // redirect if no member logged in
     } else {
       res.redirect('/');
     }
   });
 });
 
-// create new user with secure password
-app.post('/users', function (req, res) {
-  var newUser = req.body.user;
-  User.createSecure(newUser, function (err, user) {
-    // log in user immediately when created
-    req.login(user);
+// AUTH ROUTES (SIGN UP, LOG IN, LOG OUT)
+
+// create new member with secure password
+app.post('/members', function (req, res) {
+  var newMember = req.body.member;
+  Member.createSecure(newMember, function (err, member) {
+    // log in member immediately when created
+    req.login(member);
     res.redirect('/profile');
   });
 });
 
-// authenticate user and set session
+// authenticate member and set session
 app.post('/login', function (req, res) {
-  var userData = req.body.user;
-  User.authenticate(userData.email, userData.password, function (err, user) {
-    req.login(user);
+  var memberData = req.body.member;
+  Member.authenticate(memberData.email, memberData.password, function (err, member) {
+    req.login(member);
     res.redirect('/profile');
   });
 });
 
-// log out user (destroy session)
+// log out member (destroy session)
 app.get('/logout', function (req, res) {
   req.logout();
   res.redirect('/');
 });
 
 
+// API ROUTES
 
-// API
-
-// get all posts
-app.get('/api/posts', function(req, res) {
-  // find all posts in db
-  Post.find(function(err, posts) {
-    res.json(posts);
+// show current member
+app.get('/api/members/current', function (req, res) {
+  // check for current (logged-in) member
+  req.currentMember(function (err, member) {
+    res.json(member);
   });
 });
 
-// create new post
-app.post('/api/posts', function(req, res) {
+// create new post for current member
+app.post('/api/members/current/posts', function (req, res) {
   // create new post with form data (`req.body`)
   var newPost = new Post({
     adventure: req.body.adventure
   });
 
-  // save new post in db
-  newPost.save(function(err, savedPost) {
+  // save new post
+  newPost.save();
+
+  // find current member
+  req.currentMember(function (err, member) {
+    // embed new post in member's posts
+    member.posts.push(newPost);
+    // save member (and new post)
+    member.save();
+    // respond with new post
+    res.json(newPost);
+  });
+});
+
+// show all posts
+app.get('/api/posts', function (req, res) {
+  Post.find(function (err, posts) {
+    res.json(posts);
+  });
+});
+
+// create new post
+app.post('/api/posts', function (req, res) {
+  // create new post with form data (`req.body`)
+  var newPost = new Post({
+    adventure: req.body.adventure
+  });
+
+  // save new post
+  newPost.save(function (err, savedPost) {
     res.json(savedPost);
   });
 });
 
-// get one post 
-app.get('/api/posts/:id', function(req, res) {
-  // set the value of the id
-  var targetId = req.params.id;
 
-  // find post in db by id
-  Post.findOne({
-    _id: targetId
-  }, function(err, foundPost) {
-    res.json(foundPost);
-  });
-});
 
-// update post
-app.put('/api/posts/:id', function(req, res) {
-  // set the value of the id
-  var targetId = req.params.id;
 
-  // find post in db by id
-  Post.findOne({
-    _id: targetId
-  }, function(err, foundPost) {
-    // update the post's adventure
-    foundPost.adventure = req.body.adventure;
 
-    // save updated post in db
-    foundPost.save(function(err, savedPost) {
-      res.json(savedPost);
-    });
-  });
-});
 
-// delete post
-app.delete('/api/posts/:id', function(req, res) {
-  // set the value of the id
-  var targetId = req.params.id;
 
-  // find post in db by id and remove
-  Post.findOneAndRemove({
-    _id: targetId
-  }, function(err, deletedPost) {
-    res.json(deletedPost);
-  });
-});
 
-// ROOT ROUTES
 
-var posts = [{
-  adventure: "Marin Headlands"
-}];
+ 
 
-// set up root route to respond with index.html
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/public/views/index.html');
-});
 
-// set up root route to respond with profile.html
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/public/views/profile.html');
-});
 
-// set up route for /users JSON
-app.get('/members', function(req, res) {
-  res.json(members);
-});
 
-// signup route with placeholder response
-app.get('/signup', function(req, res) {
-  res.send('coming soon');
-});
+
+ 
+// // get all posts
+// app.get('/api/posts', function(req, res) {
+//   // find all posts in db
+//   Post.find(function(err, posts) {
+//     res.json(posts);
+//   });
+// });
+
+// // get one post 
+// app.get('/api/posts/:id', function(req, res) {
+//   // set the value of the id
+//   var targetId = req.params.id;
+
+//   // find post in db by id
+//   Post.findOne({
+//     _id: targetId
+//   }, function(err, foundPost) {
+//     res.json(foundPost);
+//   });
+// });
+
+// // update post
+// app.put('/api/posts/:id', function(req, res) {
+//   // set the value of the id
+//   var targetId = req.params.id;
+
+//   // find post in db by id
+//   Post.findOne({
+//     _id: targetId
+//   }, function(err, foundPost) {
+//     // update the post's adventure
+//     foundPost.adventure = req.body.adventure;
+
+//     // save updated post in db
+//     foundPost.save(function(err, savedPost) {
+//       res.json(savedPost);
+//     });
+//   });
+// });
+
+
+// set up route for /members JSON
+// app.get('/members', function(req, res) {
+//   res.json(members);
+// });
+
+// // signup route with placeholder response
+// app.get('/signup', function(req, res) {
+//   res.send('coming soon');
+// });
+
+
+
+
+
+
+
+
+
+
+
 
 // listen on port 3000
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, function () {
+  console.log('server started on localhost: 3000');
+});

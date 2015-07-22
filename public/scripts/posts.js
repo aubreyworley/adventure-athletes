@@ -12,15 +12,14 @@ $(function() {
     all: function() {
       // send GET request to server to get all posts
       $.get('/api/posts', function(data) {
-        var allposts = data;
+        var allPosts = data;
+        console.log(allPosts);
         
         // iterate through each post
         _.each(allPosts, function(post) {
           postsController.render(post);
-          _.each(post.notes, function(note) {
-            notesController.render(note, post._id);
           });
-        });
+        
         
         // add event-handers for updating/deleting
         postsController.addEventHandlers();
@@ -29,11 +28,12 @@ $(function() {
 
     create: function(newAdventure) {
       var postData = {adventure: newAdventure};
+      console.log(postData)
       
       // send POST request to server to create new post
       $.post('/api/posts', postData, function(data) {
         var newPost = data;
-        postsController.render(newPost);
+        postsController.render(newPost);  
       });
     },
 
@@ -43,7 +43,7 @@ $(function() {
         type: 'PUT',
         url: '/api/posts/' + postId,
         data: {
-          adventure: updatedAdventure,
+          adventure: updatedAdventure
         },
         success: function(data) {
           var updatedPost = data;
@@ -71,21 +71,6 @@ $(function() {
     // add event-handlers to posts for updating/deleting
     addEventHandlers: function() {
       $('#post-list')
-
-        // new note: submit event on `.new-note` form
-        .on('submit', '.new-note', function(event) {
-          event.preventDefault();
-
-          // find the post's id (stored in HTML as `data-id`)
-          var postId = $(this).closest('.post').attr('data-id');
-
-          // create new note with form data
-          var noteText = $(this).find('.note-text').val();
-          notesController.create(postId, noteText);
-
-          // reset the form
-          $(this)[0].reset();
-        })
 
         // for update: submit event on `.update-post` form
         .on('submit', '.update-post', function(event) {
@@ -118,39 +103,17 @@ $(function() {
       // add event-handler to new-post form
       $('#new-post').on('submit', function(event) {
         event.preventDefault();
+        console.log('clicked')
         
         // create new post with form data
-        var newAdventure = $('#new-adventure').val();
-        postsController.create(newAventure);
+        var newAdventure = $('#new-adventure').val()
+        console.log(newAdventure)
+        postsController.create(newAdventure);
         
         // reset the form
         $(this)[0].reset();
         $('#new-adventure').focus();
       });
-    }
-  };
-
-  // `notesController` holds all our note funtionality
-  var notesController = {
-    
-    // compile note template
-    template: _.template($('#note-template').html()),
-
-    // pass each note object through template and append to view
-    render: function(noteObj, postId) {
-      var $noteHtml = $(notesController.template(noteObj));
-      $('.note-list[data-post-id=' + postId + ']').append($noteHtml);
-    },
-
-    create: function(postId, newNoteText) {
-      var noteData = {text: newNoteText};
-
-      // send POST request to server to create new note
-      $.post('/api/posts/' + postId + '/notes', noteData, function(data) {
-        var newNote = data;
-        console.log(newNote);
-        notesController.render(newNote, postId);
-      });      
     }
   };
 

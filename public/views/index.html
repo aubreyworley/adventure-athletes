@@ -1,40 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
       <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      
-      <!-- bootstrap css -->
-      <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-      <!-- custom styles -->
-      <link type="text/css" rel="stylesheet" src="styles/style.css">
-      
-
       <title>Adventures</title>
+
+    <!-- STYLES -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <!-- custom styles-->
+    <link rel="stylesheet" href="styles/style.css">
+
+      
 </head>
 <body width="1024" height="273">
 
   <!-- header -->
-    <nav class="navbar navbar-default">
-      <div class="container">
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Login</a>
+          <a class="navbar-brand" href="/">Adventure Athletes</a>
         </div>
 
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right" id="nav-links">
-          <!-- data from nav-template goes here -->
+      <center>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#signup-modal">Become a Member</a>
+            </li>
+          </ul>
+          <!-- login -->
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="password" placeholder="Password">
+            </div>
+              <button type="submit" class="btn btn-default">Sign In</button>
+          </form>
+        </div>
+      </center>
+      </div>
+   
+
+    <!-- data from nav-template goes here -->
+           <script type="text/template" id="nav-template">
+            <% if (currentMember) { %>
+              <li><a href="/profile">Profile</a></li>
+              <li><a href="/logout">Log Out</a></li>
+            <% } else { %>
+              <li><a href="#" data-toggle="modal" data-target="#signup-modal">Sign Up</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#login-modal">Log In</a></li>
+            <% } %>
+          </script>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
     </nav>
+
+<!-- login modal -->
+  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Log In</h4>
+        </div>
+        <form method="post" action="/login">
+          <div class="modal-body">
+            <div class="form-group">
+              <input type="email" name="member[email]" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input type="password" name="member[password]" class="form-control" placeholder="Password">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" value="Log In" class="btn btn-primary">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <div class="container">
       <div class="page-header">
@@ -58,19 +116,19 @@
   <div class="container">
       <h2>Outdoor Workouts and Meetups</h2>
         <p> This Week's Workout Schedule:</p>
-       <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Sunday</th>
-        <th>Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thursday</th>
-        <th>Friday</th>
-        <th>Saturday</th>
-      </tr>
-    </thead>
-    <tbody>
+        <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+          </tr>
+        </thead>
+        <tbody>
       <tr>
         <td></td>
         <td>Strength and Power Training</td>
@@ -80,11 +138,8 @@
         <td>Balance and Agility Training</td>
         <td></td>
       </tr>
-    </tbody>
-  </table>
-  <p> This Week's Workout Locations:</p>
-   <!-- Google Maps -->
-    <div id="map-canvas"></div>
+        </tbody>
+        </table>
   </div>
 
    
@@ -93,7 +148,7 @@
     <div class="row">
       <form class="pure-form" id="new-post">
         <div class="pure-input-1">
-          <input type="text" class="form-control" id="new-post" placeholder="What's Your Next Adventure?" autofocus>
+          <input type="text" class="form-control" id="new-adventure" placeholder="What's Your Next Adventure?" autofocus>
         </div>
         <br>
         <div>
@@ -101,13 +156,18 @@
         </div>
       </form>
       <br>
+
+      <!-- list of posts -->
+      <ul class= 'list-group' id = 'post-list'></ul>
     </div>
   </div>
+  
 
 <!-- new member form-->
   <div class="well">
-    <div class="container">
-    <footer class ="site-footer">
+    <div class="container" id="signup-modal">
+      
+        <footer class ="site-footer">
     <div class="col-sm-5 form-box">
       <div class="form-top">
         <div class="form-top-left">
@@ -119,98 +179,67 @@
         </div>
       </div>
       <div class="form-bottom">
-        <form role="form" action="" method="post" class="registration-form">
-        <div class="form-group">
-          <label class="sr-only" for="form-first-name">First name</label>
-          <input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
-        </div>
-        <div class="form-group">
-          <label class="sr-only" for="form-last-name">Last name</label>
-          <input type="text" name="form-last-name" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
+        <form role="form" action="/members" method="post" class="registration-form">
+          <div class="form-group">
+            <label class="sr-only" for="form-first-name">First name</label>
+            <input type="text" name="member[firstName]" placeholder="First name" class="form-first-name form-control" id="form-first-name">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="form-last-name">Last name</label>
+            <input type="text" name="member[lastName]" placeholder="Last name" class="form-last-name form-control" id="form-last-name">
           </div>
           <div class="form-group">
             <label class="sr-only" for="form-email">Email</label>
-            <input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
+            <input type="text" name="member[email]" placeholder="Email" class="form-email form-control" id="form-email">
           </div>
+          
           <div class="form-group">
             <label class="sr-only" for="form-about-yourself">About yourself</label>
-            <textarea name="form-about-yourself" placeholder="About yourself..." class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+            <textarea name="member[about]" placeholder="About yourself" class="form-about-yourself form-control" id="form-about-yourself"></textarea>
           </div>
           <button type="submit" class="btn">Sign me up!</button>
         </form>
       </div>
     </div>
   </footer>
-</div>
-</div>
-
-  <!-- list of posts(appended to page with dynamically with ajax, underscore, jquery) -->
-        <ul class="list-group" id="post-list"></ul>
-      </div>
-    </div>
+  </div>
   </div>
 
-    <!-- jquery -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-      
-  <!-- bootstrap js -->
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript for Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified JavaScript for Underscore.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
-  <!-- underscore -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-
-  <!-- custom script -->
- <script type="text/javascript" href="scripts/posts.js"></script>
+  <script src="scripts/posts.js"></script>
 
   <!-- underscore template -->
   <script type="text/template" id="post-template">
     <li class="list-group-item post" id="post-<%= _id %>" data-id="<%= _id %>">
   
-    // <!-- post label (word) -->
-   <span class="label label-default"><%= adventure %></span>
+    <!-- post label (adventure) -->
+        <%= adventure %>
 
-   // <!-- delete button -->
+    <!-- delete button -->
       <button class="close right-side delete-post" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
 
-      // <!-- edit link (pencil icon) to toggle form -->
+       <!-- edit link (pencil icon) to toggle form -->
       <a class="edit-pencil" data-toggle="collapse" data-target="#update-<%= _id %>">
         <span class="glyphicon glyphicon-pencil edit"></span>
       </a>
 
-       // <!-- form to update post -->
+       <!-- form to update post -->
       <div class="collapse" id="update-<%= _id %>">
         <br>
         <form class="pure-form update-post">
-          <input type="text" class="form-control updated-adventure" value="<%= adventure %>" placeholder="New adventure?">
+          <input type="text" class="form-control updatedAdventure" value="<%= adventure %>" placeholder="New adventure?">
           <input type="submit" class="btn btn-default" value="Update Post">
         </form>
       </div>
 
-      // <!-- add note link (file icon) to toggle new note form -->
-      <a class="note-file" data-toggle="collapse" data-target="#new-note-<%= _id %>">
-        <span class="glyphicon glyphicon-file"></span>
-      </a>
 
-      // <!-- form to add new note -->
-      <div class="collapse" id="new-note-<%= _id %>">
-        <br>
-        <form class="form-inline new-note">
-          <input type="text" class="form-control note-text" placeholder="Note?">
-          <input type="submit" class="btn btn-default" value="Add Note">
-        </form>
-      </div>
-
-      <!-- list of notes -->
-      <div class="note-list" data-post-id="<%= _id %>"></div>
-    </li>
-  </script>
-
-  <script type="text/template" id="note-template">
-    <p class="text-muted">> <%= text %></p>
-  </script>
-
-  
 </body>
 </html>

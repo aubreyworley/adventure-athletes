@@ -7,13 +7,13 @@ $(function() {
     template: _.template($('#member-template').html()),
     postTemplate: _.template($('#member-post-template').html()),
 
-    // get current (logged-in) user
+    // get current (logged-in) member
     show: function() {
       // AJAX call to server to GET /api/users/current
       $.get('/api/members/current', function(member) {
         console.log(member);
 
-        // pass user through profile template
+        // pass member through profile template
         $memberHtml = $(membersController.template({currentMember: member}));
 
         // append user HTML to page
