@@ -20,7 +20,6 @@ mongoose.connect(
 
 // middleware
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 app.use(session({
@@ -35,6 +34,7 @@ app.use('/', function (req, res, next) {
   // saves memberId in session for logged-in member
   req.login = function (member) {
     req.session.memberId = member.id;
+    // console.log("user" + user._id + "is logged in")
   };
 
   // finds member currently logged in based on `session.memberId`
@@ -56,7 +56,7 @@ app.use('/', function (req, res, next) {
 
 // STATIC ROUTES
 
-// set up root route to respond with index.html
+// homepage
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/public/views/index.html');
 });
@@ -75,14 +75,12 @@ app.get('/profile', function (req, res) {
   });
 });
 
-// set up route for /members JSON
-// app.get('/members', function(req, res) {
-//   res.json(members);
-// });
-
-// // signup route with placeholder response
-// app.get('/signup', function(req, res) {
-//   res.send('coming soon');
+// // see who the current user is
+// app.get('/currentMember', function(req, res) {
+//   console.log("sending current user")
+//   req.currentUser(function (err, user) {
+//    res.json(member); 
+//  });
 // });
 
 // // get one post 
@@ -120,6 +118,11 @@ app.put('/api/posts/:id', function(req, res) {
 
 // AUTH ROUTES (SIGN UP, LOG IN, LOG OUT)
 
+// // signup route with placeholder response
+// app.get('/signup', function(req, res) {
+//   res.send('coming soon');
+// });
+
 // create new member with secure password
 app.post('/members', function (req, res) {
   var newMember = req.body.member;
@@ -135,6 +138,7 @@ app.post('/login', function (req, res) {
   var memberData = req.body.member;
   Member.authenticate(memberData.email, memberData.password, function (err, member) {
     req.login(member);
+    console.log("LOGGIN IN!")
     res.redirect('/profile');
   });
 });

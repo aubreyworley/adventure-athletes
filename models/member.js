@@ -46,7 +46,7 @@ MemberSchema.statics.authenticate = function (email, password, callback) {
 
     if (member === null) {
       throw new Error('Can\'t find member with email ' + email);
-       } else if (member.checkPassword(password)) {
+      } else if (member.checkPassword(password)) {
           callback(null, member);
     }
   });
@@ -54,10 +54,10 @@ MemberSchema.statics.authenticate = function (email, password, callback) {
 
 //compare password user enters with hashed password
 MemberSchema.methods.checkPassword = function (password) {
+  console.log("CHECKING PASSWORD", password, this.passwordDigest);
   return bcrypt.compareSync(password, this.passwordDigest);
 };
 
 //create Member Model
-
 var Member = mongoose.model('Member', MemberSchema);
 module.exports = Member;

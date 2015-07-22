@@ -1,145 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- bootstrap css -->
-  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <!-- Normalize CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
-  <!-- custom styles -->
-  <link type="text/css" rel="stylesheet" href="styles/style.css">
+    <!-- bootstrap css -->
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <!-- custom styles -->
+    <link type="text/css" rel="stylesheet" href="styles/style.css">
 
-  <title>Member Profile</title>
+    <title>Member Profile</title>
 
-</head>
-<body width="1024" height="273">
+  </head>
+  <body width="1024" height="273">
 
-  <!-- header -->
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Adventure Athletes</a>
-        </div>  
+    <!-- header -->
+      <div class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Adventure Athletes</a>
+          </div>  
 
-      <center>
-        <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-            <li><a href="/">Posts</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right" id="nav-links">
-          <!-- underscore template for nav links -->
-          <script type="text/template" id="nav-template">
+        <center>
+          <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <!-- <li class ="active" ><a href="/index">Home</a></li> -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right" id="nav-links">
+          <!-- log out -->
+       <!--    <form class="navbar-form navbar-right" method="get" action="/logout">
+
+              <button type="submit" class="btn btn-default">Log Out</button> -->
+             <!--  <input id="logout" type="submit" class="btn btn-success" value="Log Out"> -->
+          </div>
+        </div>
+        </center>
+      </div>
+
+    <!-- data from nav-template goes here -->
+           <script type="text/template" id="nav-template">
             <% if (currentMember) { %>
+
               <li><a href="/profile">Profile</a></li>
               <li><a href="/logout">Log Out</a></li>
             <% } else { %>
-              <li><a href="#" data-toggle="modal" data-target="#login-modal">Log In</a></li>
               <li><a href="#" data-toggle="modal" data-target="#signup-modal">Sign Up</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#login-modal">Log In</a></li>
             <% } %>
           </script>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container -->
-  </center>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
 
-<!-- login modal -->
-  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Log In</h4>
-        </div>
-        <form method="post" action="/login">
-          <div class="modal-body">
-            <div class="form-group">
-              <input type="email" name="member[email]" class="form-control" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <input type="password" name="member[password]" class="form-control" placeholder="Password">
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" value="Log In" class="btn btn-primary">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>  
 
-<div class="container">
-      <div class="page-header">
-        <h1>Bay Area Adventure Athletes</h1>
-        <p>Mountaineer training group: train for the outdoors in the outdoors.</p>
-      </div>
-    </div>
-  </div>
 
-  <div class="container" style="text-align:center">
-      <p><a href="https://imgur.com/rgSf1h3"><img src="http://i.imgur.com/rgSf1h3.jpg?1" title="source: imgur.com" /></a>
-  </div>
+          
+
+
+
+ 
 
   <div class="container">
-    <div class="col-md-6 col-sm-8">
-        <div class="panel panel-default" id="show-member">
-          <!-- underscore template for member profile -->
-          <script type="text/template" id="member-template">
-            <div class="panel-heading">
-              &nbsp;
-              <strong>Welcome, <%= currentUser.firstName %>!</strong>
-            </div>
-            <!-- list of posts -->
-            <h2>Your Liked Adventures</h2>
-
-            <ul class="list-group" id="member-post-list">
-              <!-- data from member-post-template goes here -->
-            </ul>
-          </script>
-
-          <!-- underscore template for member post -->
-          <script type="text-template" id="member-post-template">
-            <li class="list-group-item">
-              <span class="label label-success"><%= type %></span>
-              &nbsp;
-              <%= adventure %> adventure
-            </li>
-          </script>
+        <div class="page-header">
+          <h1>Bay Area Adventure Athletes</h1>
+          <p>Mountaineer training group: train for the outdoors in the outdoors.</p>
         </div>
+      </div>
+    </div>
+
+    <div class="container" style="text-align:center">
+        <p><a href="https://imgur.com/rgSf1h3"><img src="http://i.imgur.com/rgSf1h3.jpg?1" title="source: imgur.com" /></a>
+    </div>
+
+    <div class="container">
+      <div class="col-md-6 col-sm-8">
+          <div class="panel panel-default" id="show-member">
+            <!-- underscore template for member profile -->
+            <script type="text/template" id="member-template">
+              <div class="panel-heading">
+                &nbsp;
+                <strong>Welcome, <%= currentUser.firstName %>!</strong>
+              </div>
+              <!-- list of posts -->
+              <h2>Your Liked Adventures</h2>
+
+              <ul class="list-group" id="member-post-list">
+                <!-- data from member-post-template goes here -->
+              </ul>
+            </script>
+
+            <!-- underscore template for member post -->
+            <script type="text-template" id="member-post-template">
+              <li class="list-group-item">
+                <span class="label label-success"><%= type %></span>
+                &nbsp;
+                <%= adventure %> adventure
+              </li>
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- footer -->
+    <div class="well">
+      <div class="container">
+        <footer class ="site-footer"></footer>
       </div>
     </div>
   </div>
 
-  <!-- footer -->
-  <div class="well">
-    <div class="container">
-      <footer class ="site-footer"></footer>
-    </div>
-  </div>
-  </div>
 
+    <!-- jquery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 
-  <!-- jquery -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <!-- bootstrap js -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-  <!-- bootstrap js -->
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- underscore -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
-  <!-- underscore -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <!-- custom scripts -->
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <script type="text/javascript" src="scripts/profile.js"></script>
+    <script type="text/javascript" src="scripts/posts.js"></script>
 
-  <!-- custom scripts -->
-  <script type="text/javascript" src="scripts/main.js"></script>
-  <script type="text/javascript" src="scripts/profile.js"></script>
-  <script type="text/javascript" src="scripts/posts.js"></script>
-
-</body>
-</html>
+  </body>
+  </html>

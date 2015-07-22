@@ -1,43 +1,50 @@
 $(function() {
 
+  // `logsController` holds log functionality
   var postsController = {
+
+  // compile underscore template
     template: _.template($('#post-template').html()),
 
-    // pass each post object through template and append to view
-    render: function(postObj) {
-      var $postHtml = $(postsController.template(postObj));
-      $('#post-list').append($postHtml);
-    },
-
+    // get all posts
     all: function() {
-      // send GET request to server to get all posts
-      $.get('/api/posts', function(data) {
-        var allPosts = data;
+      // AJAX call to server to GET /api/posts
+      $.get('/api/posts', function(allPosts) {
         console.log(allPosts);
         
-        // iterate through each post
-        _.each(allPosts, function(post) {
-          postsController.render(post);
-          });
-        
-        
-        // add event-handers for updating/deleting
-        postsController.addEventHandlers();
+        // iterate through all posts
+        _.each(allPosts, function(post, index) {
+          console.log(post);
+          
+          // pass post through underscore template
+          var $postHtml = $(postsController.template(post));
+          console.log($postHtml);
+          
+          // append post HTML to page
+          $('#post-list').append($postHtml);
+        });
       });
     },
 
-    create: function(newAdventure) {
-      var postData = {adventure: newAdventure};
-      console.log(postData)
-      
-      // send POST request to server to create new post
-      $.post('/api/posts', postData, function(data) {
-        var newPost = data;
-        postsController.render(newPost);  
+    // create new post
+    create: function(adventureData) {
+      // define object with our post data
+      var postData = {adventure: adventureData};
+
+      // AJAX call to server to POST /api/posts
+      $.post('/api/posts', postData, function(newPost) {
+        console.log(newPost);
+
+        // pass post through underscore template
+        var $postHtml = $(postsController.template(newPost));
+        console.log($postHtml);
+
+       // append post HTML to page
+        $('#post-list').append($postHtml);
       });
     },
 
-    update: function(postId, updatedAdventure) {
+      update: function(postId, updatedAdventure) {
       // send PUT request to server to update post
       $.ajax({
         type: 'PUT',
@@ -74,13 +81,15 @@ $(function() {
 
         // for update: submit event on `.update-post` form
         .on('submit', '.update-post', function(event) {
+          alert("hello")
           event.preventDefault();
           
           // find the post's id (stored in HTML as `data-id`)
           var postId = $(this).closest('.post').attr('data-id');
           
           // udpate the post with form data
-          var updatedAdventure = $(this).find('.updated-adventure').val();
+          var updatedAdventure = $(this).find('.adventure').val();
+          console.log("UPDATED ADV", updatedAdventure)
           postsController.update(postId, updatedAdventure);
         })
         
@@ -103,19 +112,20 @@ $(function() {
       // add event-handler to new-post form
       $('#new-post').on('submit', function(event) {
         event.preventDefault();
-        console.log('clicked')
+        console.log('clicked');
         
-        // create new post with form data
-        var newAdventure = $('#new-adventure').val()
-        console.log(newAdventure)
-        postsController.create(newAdventure);
+        // grab post adventure from form
+        var postAdventure = $('#adventure').val()
+
+        // create new post
+        postsController.create(postAdventure);
         
         // reset the form
         $(this)[0].reset();
-        $('#new-adventure').focus();
       });
     }
   };
+  postsController.addEventHandlers();
 
   postsController.setupView();
 

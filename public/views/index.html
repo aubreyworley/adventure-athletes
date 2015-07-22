@@ -18,6 +18,7 @@
 </head>
 <body width="1024" height="273">
 
+
   <!-- header -->
     <div class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
@@ -33,11 +34,11 @@
       <center>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#s">Become a Member</a>
+            <li class="active"><a href="#signup-modal">Become a Member</a>
             </li>
           </ul>
           <!-- login -->
-          <form class="navbar-form navbar-right" method="post" action="/profile">
+          <form class="navbar-form navbar-right" method="post" action="/login">
             <div class="form-group">
               <input type="email" class="form-control" name="member[email]" placeholder="Email">
             </div>
@@ -94,6 +95,7 @@
 </div>
 
 
+
     <div class="container">
       <div class="page-header">
         <h1>Bay Area Adventure Athletes</h1>
@@ -109,7 +111,7 @@
   <div class="container">
     <div class="row">
       <h1 class="page-title entry-title">About</h1>
-        <p> With all the fitness trends and expensive gyms, it may be difficult to find an affordable fitness community of adventure athletes who train for the outdoors in the outdoors. Mountaineer Training Club provides exactly that: a place for people to train together, plan trips together, and work towards conquering that next mountain peak together.</p>
+        <p> With all the fitness trends and expensive gyms, it can be difficult to find an affordable fitness community of adventure athletes who train for the outdoors in the outdoors. Mountaineer Training Club provides exactly that: a place for people to train together, plan trips together, and work towards conquering that next mountain peak together.</p>
     </div>
   </div>
 
@@ -148,7 +150,7 @@
     <div class="row">
       <form class="pure-form" id="new-post">
         <div class="pure-input-1">
-          <input type="text" class="form-control" id="new-adventure" placeholder="What's Your Next Adventure?" autofocus>
+          <input type="text" class="form-control" id="adventure" placeholder="What's Your Next Adventure?" autofocus>
         </div>
         <br>
         <div>
@@ -238,7 +240,7 @@
       <div class="collapse" id="update-<%= _id %>">
         <br>
         <form class="pure-form update-post">
-          <input type="text" class="form-control updatedAdventure" value="<%= adventure %>" placeholder="New adventure?">
+          <input type="text" class="form-control adventure" value="<%= adventure %>" placeholder="New adventure?">
           <input type="submit" class="btn btn-default" value="Update Post">
         </form>
       </div>
