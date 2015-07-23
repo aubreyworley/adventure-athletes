@@ -21,6 +21,7 @@ $(function() {
     }
   };
 
+
   mainController.showCurrentMember();
 
 });

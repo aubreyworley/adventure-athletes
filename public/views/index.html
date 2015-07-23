@@ -72,18 +72,19 @@
             </li>
           </ul>
           <!-- login -->
-          <form class="navbar-form navbar-right" method="post" action="/login">
-            <div class="form-group">
-              <input type="email" class="form-control" name="member[email]" placeholder="Email">
+          <form class="navbar-form navbar-right" method="post" action="/login" required>
+            <div class="form-group" required/>
+              <input type="email" class="form-control" name="member[email]" placeholder="Email" required/>
             </div>
-            <div class="form-group">
-              <input type="password" class="form-control" name="member[password]" placeholder="Password">
+            <div class="form-group" required>
+              <input type="password" class="form-control" name="member[password]" placeholder="Password" required/>
             </div>
               <button type="submit" class="btn btn-default">Log In</button>
           </form>
         </div>
         </center>
       </div>
+    </div>
    
 
     <!-- data from nav-template goes here -->
@@ -101,32 +102,7 @@
       </div><!-- /.container -->
     
 
-<!-- login modal -->
-  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Log In</h4>
-        </div>
-        <form method="post" action="/login">
-          <div class="modal-body">
-            <div class="form-group">
-              <input type="email" name="member[email]" class="form-control" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <input type="password" name="member[password]" class="form-control" placeholder="Password">
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="submit" value="Log In" class="btn btn-primary">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
 
   <div class="container-fluid">
       <h1>Bay Area Adventure Athletes</h1>
@@ -258,7 +234,14 @@
     <!-- Latest compiled and minified JavaScript for Underscore.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
+  <!-- custom scripts -->
   <script src="scripts/posts.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/profile.js"></script>
+
+  <!-- validation scripts -->
+  <script src="scripts/jquery.validate.js"></script>
+
 
   <!-- underscore template -->
   <script type="text/template" id="post-template">
