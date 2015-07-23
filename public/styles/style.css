@@ -22,12 +22,28 @@ body {
     background-color: #006666;
     border-color: #E7E7E7;
     font-family:'Roboto', sans-serif;
+    color: #FFFFFF
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #FFFFFF;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #FFFFFF;
+    background-color: #006666;
 }
 
 /* title */
 .navbar-default .navbar-brand {
     color: #FFFFFF;
     font-family:'Roboto', sans-serif;
+}
+
+.navbar-default .navbar-nav {
+  color: #FFFFFF;
+    font-family:'Roboto', sans-serif;
+
 }
 
 /* Sign up title */
@@ -72,6 +88,8 @@ p {
     margin-left: 20px;
     margin-right: 20px;
 }
+
+
 
 .displayphoto {
   display: block;
