@@ -3,15 +3,95 @@
 /* reset */
 
 body {
-  font-family: Lato, Helvetica Neue, Helvetica, Arial;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
 
 /* bootstrap overrides */
 
 .navbar {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 .well {
   padding: 10px 15px;
+  font-family:'Roboto', sans-serif;
+}
+
+/* navbar */
+.navbar-default {
+    background-color: #006666;
+    border-color: #E7E7E7;
+    font-family:'Roboto', sans-serif;
+}
+
+/* title */
+.navbar-default .navbar-brand {
+    color: #FFFFFF;
+    font-family:'Roboto', sans-serif;
+}
+
+/* Sign up title */
+.navbar-link  {
+  background-color: #006666;
+  font-family:'Roboto', sans-serif;
+
+}
+/* Post Button */
+.btn-success {
+    border: none;
+    padding: 0.6em 1.2em;
+    background: #388a5a;
+    color: #fff;
+    font-family:'Roboto', sans-serif;
+    font-size: 1em;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 3px 2px;
+    border-radius: 2px;
+}
+
+h1, h2, h3 {
+    font-size: 30px;
+    color: #006666;
+    font-weight: bold;
+    margin: 5px;
+    font-family:'Roboto', sans-serif;
+    padding: 5px;
+     margin-left: 20px;
+    margin-right: 20px;
+}
+
+p {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    color: #787878;
+    font-family:'Roboto', sans-serif;
+    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.displayphoto {
+  display: block;
+  /* position: relative;*/
+   width: 100%;
+   border:none;
+}
+
+.pure-form {
+   margin-left: 20px;
+    margin-right: 20px;
+}
+
+.list-group{
+  padding: 5px;
+   margin-left: 20px;
+    margin-right: 20px;
+}
+
+.table-bordered {
+   margin-left: 20px;
+    margin-right: 20px;
 }

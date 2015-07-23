@@ -14,9 +14,43 @@
     <!-- custom styles-->
     <link rel="stylesheet" href="styles/style.css">
 
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+</script>
+<script type="text/javascript">
+  function initialize() {
+    var position = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = {
+      zoom: 10,
+      center: position,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(
+        document.getElementById("map_canvas"),
+        myOptions);
+ 
+    var marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        title:"This is the place."
+    });  
+ 
+    var contentString = 'Hello <strong>World</strong>!';
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+ 
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+ 
+  }
+ 
+</script>
+
       
 </head>
-<body width="1024" height="273">
+<body onload="initialize()">
 
 
   <!-- header -->
@@ -34,7 +68,7 @@
       <center>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#signup-modal">Become a Member</a>
+            <li class="active"><a class="navbar-link"href="#signup-modal">Become a Member</a>
             </li>
           </ul>
           <!-- login -->
@@ -94,67 +128,74 @@
   </div>
 </div>
 
-
-
-    <div class="container">
-      <div class="page-header">
-        <h1>Bay Area Adventure Athletes</h1>
-        <p>Mountaineer training group: train for the outdoors in the outdoors.</p>
-      </div>
+  <div class="container-fluid">
+      <h1>Bay Area Adventure Athletes</h1>
+      <p>Mountaineer training group: train for the outdoors in the outdoors.</p>
     </div>
   </div>
+  
 
-  <div class="container" style="text-align:center">
-      <p><a href="https://imgur.com/rgSf1h3"><img src="http://i.imgur.com/rgSf1h3.jpg?1" title="source: imgur.com" /></a>
+  <div class="container-fluid">
+      <div><a href="https://imgur.com/rgSf1h3"><img src="http://i.imgur.com/rgSf1h3.jpg?1" title="source: imgur.com" class="displayphoto"/></a>
+      </div>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <h1 class="page-title entry-title">About</h1>
+  <div class="container-fluid">
+      <h1>About</h1>
         <p> With all the fitness trends and expensive gyms, it can be difficult to find an affordable fitness community of adventure athletes who train for the outdoors in the outdoors. Mountaineer Training Club provides exactly that: a place for people to train together, plan trips together, and work towards conquering that next mountain peak together.</p>
     </div>
   </div>
 
-  <div class="container">
-      <h2>Outdoor Workouts and Meetups</h2>
-        <p> This Week's Workout Schedule:</p>
-        <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Sunday</th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-          </tr>
-        </thead>
-        <tbody>
-      <tr>
-        <td></td>
-        <td>Strength and Power Training</td>
-        <td></td>
-        <td>Aerobic Interval Training </td>
-        <td></td>
-        <td>Balance and Agility Training</td>
-        <td></td>
-      </tr>
-        </tbody>
-        </table>
+  <div class="container-fluid">
+    <h3>Outdoor Workout Meetups</h3>
+    <p> This Week's Workout Schedule:</p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Sunday</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td>Strength and Power Training</td>
+          <td></td>
+          <td>Aerobic Interval Training </td>
+          <td></td>
+          <td>Balance and Agility Training</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <p> Workout Locations: </p>
   </div>
 
-   
+<div class="container" align="center">
+  <div id="map_canvas" style="width:700px; height:400px"></div>   
+</div> 
+
+<div class="container-fluid" id="next-trip">
+  <div class="row">
+    <h3>Plan Your Next Trip </h3>
+  </div>
+</div>
         <!-- new post form-->
-  <div class="container" align="center">
+  <div class="container-fluid" align="center">
     <div class="row">
+      
       <form class="pure-form" id="new-post">
         <div class="pure-input-1">
           <input type="text" class="form-control" id="adventure" placeholder="What's Your Next Adventure?" autofocus>
         </div>
         <br>
         <div>
-          <input type="submit" class="btn btn-success" value="Post to our Page">
+          <input type="submit" class="btn btn-success" value="Post">
         </div>
       </form>
       <br>
