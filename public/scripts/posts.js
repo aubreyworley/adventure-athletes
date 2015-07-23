@@ -81,7 +81,7 @@ $(function() {
 
         // for update: submit event on `.update-post` form
         .on('submit', '.update-post', function(event) {
-          alert("hello")
+          // alert("hello")
           event.preventDefault();
           
           // find the post's id (stored in HTML as `data-id`)

@@ -75,53 +75,7 @@ app.get('/profile', function (req, res) {
   });
 });
 
-// // see who the current user is
-// app.get('/currentMember', function(req, res) {
-//   console.log("sending current user")
-//   req.currentUser(function (err, user) {
-//    res.json(member); 
-//  });
-// });
-
-// // get one post 
-// app.get('/api/posts/:id', function(req, res) {
-//   // set the value of the id
-//   var targetId = req.params.id;
-
-//   // find post in db by id
-//   Post.findOne({
-//     _id: targetId
-//   }, function(err, foundPost) {
-//     res.json(foundPost);
-//   });
-// });
-
-// update post
-app.put('/api/posts/:id', function(req, res) {
-  // set the value of the id
-  var targetId = req.params.id;
-
-  // find post in db by id
-  Post.findOne({
-    _id: targetId
-  }, function(err, foundPost) {
-    // update the post's adventure
-    foundPost.adventure = req.body.adventure;
-
-    // save updated post in db
-    foundPost.save(function(err, savedPost) {
-      res.json(savedPost);
-    });
-  });
-});
-
-
 // AUTH ROUTES (SIGN UP, LOG IN, LOG OUT)
-
-// // signup route with placeholder response
-// app.get('/signup', function(req, res) {
-//   res.send('coming soon');
-// });
 
 // create new member with secure password
 app.post('/members', function (req, res) {
@@ -198,6 +152,36 @@ app.post('/api/posts', function (req, res) {
   // save new post
   newPost.save(function (err, savedPost) {
     res.json(savedPost);
+  });
+});
+
+// update post
+app.put('/api/posts/:id', function(req, res) {
+  // set the value of the id
+  var targetId = req.params.id;
+
+  // find post in db by id
+  Post.findOne({
+    _id: targetId
+  }, function(err, foundPost) {
+    // update the post's adventure
+    foundPost.adventure = req.body.adventure;
+
+    // save updated post in db
+    foundPost.save(function(err, savedPost) {
+      res.json(savedPost);
+    });
+  });
+});
+
+// delete phrase
+app.delete('/api/posts/:id', function (req, res) {
+  // set the value of the id
+  var targetId = req.params.id;
+
+  // find phrase in db by id and remove
+  Post.findOneAndRemove({_id: targetId}, function (err, deletedPost) {
+    res.json(deletedPost);
   });
 });
 
