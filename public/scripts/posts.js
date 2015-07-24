@@ -1,5 +1,7 @@
 $(function() {
 
+      
+
   // `logsController` holds log functionality
   var postsController = {
 

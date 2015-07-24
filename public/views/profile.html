@@ -29,7 +29,7 @@
             <a class="navbar-brand" href="/">Adventure Athletes</a>
           </div>  
 
-        <center>
+        <!-- <center> -->
           <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
               <li><a href="/">Home</a></li>
@@ -42,7 +42,7 @@
              <!--  <input id="logout" type="submit" class="btn btn-success" value="Log Out"> -->
           </div>
         </div>
-        </center>
+       <!--  </center> -->
       </div>
 
     <!-- data from nav-template goes here -->
@@ -71,37 +71,14 @@
       </div>
   </div>
 
-    <div class="container">
-      <div class="col-md-6 col-sm-8">
-          <div class="panel panel-default" id="show-member">
-            <!-- underscore template for member profile -->
-            <script type="text/template" id="member-template">
-              <div class="panel-heading">
-                &nbsp;
-                <strong>Welcome, <%= currentUser.firstName %>!</strong>
-              </div>
-              <!-- list of posts -->
-              <h2>Your Liked Adventures</h2>
-
-              <ul class="list-group" id="member-post-list">
-                <!-- data from member-post-template goes here -->
-              </ul>
-            </script>
-
-            <!-- underscore template for member post -->
-            <script type="text-template" id="member-post-template">
-              <li class="list-group-item">
-                <span class="label label-success"><%= type %></span>
-                &nbsp;
-                <%= adventure %> adventure
-              </li>
-            </script>
-          </div>
-        </div>
-      </div>
+<div class= "container" >
+  <div class = "row">
+    <div id= "profile-info">
     </div>
-  
-    <!-- footer -->
+  </div>
+</div>
+
+<!-- footer -->
     <div class="well">
       <div class="container">
         <footer class ="site-footer"></footer>
@@ -123,6 +100,26 @@
     <script type="text/javascript" src="scripts/main.js"></script>
     <script type="text/javascript" src="scripts/profile.js"></script>
     <script type="text/javascript" src="scripts/posts.js"></script>
+    <script type="text/javascript" src="scripts/profileTemplate.js"></script>
+
+     <!-- underscore template -->
+  <script type="text/template" id="profile-template">
+  <% if (currentMember) { %>
+
+    <li class="list-group-item member" id="profile-info-<%= _id %>" data-id="<%= _id %>">
+
+  
+    <!-- profile-info -->
+       <p><b> First Name: </b><%= firstName %> </p>
+        <p><b> Last Name: <%= lastName %> </p>
+        <p><b> Email </b><%= email %></p>
+       <p> About </b><%= about %></p>
+
+        <% } %>
+
+        </script>
+
+      
 
   </body>
   </html>

@@ -13,13 +13,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
     <!-- custom styles-->
     <link rel="stylesheet" href="styles/style.css">
+    <!-- mapbox-->
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet'/>
 
-<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
-
-      
 </head>
-<body onload="initialize()">
+<body>
 
 
   <!-- header -->
@@ -71,9 +70,7 @@
       </div><!-- /.container -->
     
 
-
-
-  <div class="container-fluid">
+<div class="container-fluid">
       <h1>Bay Area Adventure Athletes</h1>
       <p>Mountaineer training group: train for the outdoors in the outdoors.</p>
     </div>
@@ -81,7 +78,7 @@
   
 
   <div class="container-fluid">
-      <div><a href="https://imgur.com/rgSf1h3"><img src="http://i.imgur.com/rgSf1h3.jpg?1" title="source: imgur.com" class="displayphoto"/></a>
+      <div><a width= "100%" href="https://imgur.com/rgSf1h3"><img src="http://i.imgur.com/rgSf1h3.jpg?1" title="source: imgur.com" class="displayphoto"/></a>
       </div>
   </div>
 
@@ -121,8 +118,12 @@
     <p> Workout Locations: </p>
   </div>
 
-<div id='map'></div>
-
+<!-- Workout Locations Map -->
+<div class="container">
+<div class="row" id= "map" align="center">
+  <iframe width='70%' height='300px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/aworley.98f9c235/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoiYXdvcmxleSIsImEiOiIxNGRlYmM2ZmM0YmMxY2VlZjQ4NTMyY2Q4OWQ0M2I0OSJ9.pIOJ95hk0i-6hzOvqhU7zw'></iframe>
+</div>
+</div>
 
 <div class="container-fluid" id="next-trip">
   <div class="row">
@@ -203,9 +204,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
   <!-- custom scripts -->
+  
   <script src="scripts/posts.js"></script>
-  <script src="scripts/main.js"></script>
-  <script src="scripts/profile.js"></script>
+ 
+   <script src="scripts/profile.js"></script>
+   <script src="scripts/main.js"></script>
 
   <!-- validation scripts -->
   <script src="scripts/jquery.validate.js"></script>
