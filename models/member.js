@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     salt = bcrypt.genSaltSync(10),
     Post = require('./post');
 
-  //set User Schema
+  //set Member Schema
 
   var MemberSchema = new Schema({
       firstName: String,
@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
       email: String,
       about: String,
       passwordDigest: {type: String, minlength: 6},
-      posts: [Post.schema],
+      posts: [Post.schema]
   });
 
   //create a new user with secure hashed password

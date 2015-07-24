@@ -3,8 +3,7 @@
 /* reset */
 
 body {
-  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-  font-size: 16px;
+  font-family: "Museo Slab", Serif;  font-size: 16px;
 }
 
 /* bootstrap overrides */
@@ -14,15 +13,14 @@ body {
 }
 .well {
   padding: 10px 15px;
-      font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-}
+      font-family: "Museo Slab", Serif;}
 
 /* navbar */
 .navbar-default {
     background-color: #074e68;
     border-color: #E7E7E7;
-        font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-    color: #FFFFFF
+        font-family: "Museo Slab", Serif;    
+        color: #FFFFFF
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -32,26 +30,24 @@ body {
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
     color: #FFFFFF;
     background-color: #074e68;
-    font-family: "Proxima", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Museo Slab", Serif;
 }
 
 /* title */
 .navbar-default .navbar-brand {
     color: #FFFFFF;
-    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-}
+    font-family: "Museo Slab", Serif;
+  }
 
 .navbar-default .navbar-nav {
   color: #FFFFFF;
-  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-
+  font-family: "Museo Slab", Serif;
 }
 
 /* Sign up title */
 .navbar-link  {
   background-color: #006666;
-  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-
+  font-family: "Museo Slab", Serif;
 }
 /* Post Button */
 .btn-success {
@@ -59,7 +55,7 @@ body {
     padding: 0.6em 1.2em;
     background: #388a5a;
     color: #fff;
-    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+    font-family: "Museo Slab", Serif;
     font-size: 1em;
     letter-spacing: 1px;
     cursor: pointer;
@@ -73,19 +69,20 @@ h1, h2, h3 {
     color: #006666;
     font-weight: bold;
     margin: 5px;
-    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+    font-family: "Museo Slab", Serif;
     padding: 5px;
      margin-left: 20px;
     margin-right: 20px;
+    margin-top: 20px;
 }
 
 p {
     font-weight: 300;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 24px;
     color: #787878;
-        font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-    padding: 5px;
+        font-family: "Museo Slab", Serif;    
+        padding: 5px;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -102,28 +99,28 @@ p {
 .pure-form {
    margin-left: 20px;
     margin-right: 20px;
-    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-}
+    font-family: "Museo Slab", Serif;
+  }
 
 .list-group{
   padding: 5px;
    margin-left: 20px;
     margin-right: 20px;
-    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-}
+    font-family: "Museo Slab", Serif;
+  }
 
 .table {
   margin-right: 20px;
   margin-left: 20px;
-    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
- padding-left: 20px;
-  padding-right: 20px;
+    font-family: "Museo Slab", Serif; 
+    padding-left: 0px;
+  padding-right: 40px;
   position: relative;
 }
 
 table.table.table-bordered {
    margin-left: 20px;
-  margin-right: 20px;
+  margin-right: 40px;
   margin-top: 20px;
   margin-bottom: 20px;
 

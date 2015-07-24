@@ -32,6 +32,7 @@ $(function() {
       });
     },
 
+
     // create new post for current member
     createPost: function(adventureData) {
       // define object with our post data
@@ -49,6 +50,23 @@ $(function() {
         $('#member-post-list').append($postHtml);
       });
     },
+
+    // // create profile page for current member
+    // createProfile: function (profileData) {
+      
+    //   profileTemplate = _.template($('#profile-template').html());
+
+    // // define object with our sign up data
+    //   var $profileInfo = $('#profile-info');
+
+    //   $.post('/api/members/current/profile', profileInfo, function(data) {
+    //     var profile = data;
+
+    //     $('#profile-info').append(members)
+    //     console.log(profile);
+    //        });
+    // }
+    // }
 
     setupView: function() {
       // get current member

@@ -69,6 +69,7 @@ app.get('/profile', function (req, res) {
     if (member) {
       res.sendFile(__dirname + '/public/views/profile.html');
     // redirect if no member logged in
+
     } else {
       res.redirect('/');
     }
@@ -174,12 +175,12 @@ app.put('/api/posts/:id', function(req, res) {
   });
 });
 
-// delete phrase
+// delete post
 app.delete('/api/posts/:id', function (req, res) {
   // set the value of the id
   var targetId = req.params.id;
 
-  // find phrase in db by id and remove
+  // find post in db by id and remove
   Post.findOneAndRemove({_id: targetId}, function (err, deletedPost) {
     res.json(deletedPost);
   });

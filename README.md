@@ -14,9 +14,9 @@ jQuery/AJAX
 --------------------
 Steps to Run Locally
 --------------------
-1. Clone repo
-2. Npm install
-3. Start server
+$ git clone
+$ npm install
+$ node server.js
 
 --------------
 Link to Heroku
