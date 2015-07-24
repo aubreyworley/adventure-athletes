@@ -21,7 +21,7 @@ $ node server.js
 --------------
 Link to Heroku
 --------------
-https://git.heroku.com/adventure-athletes.git
+https://adventure-athletes.herokuapp.com
 
 
 
