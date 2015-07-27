@@ -59,7 +59,7 @@ $(function() {
     // // define object with our sign up data
     //   var $profileInfo = $('#profile-info');
 
-    //   $.post('/api/members/current/profile', profileInfo, function(data) {
+    //   $.get('/api/members/current/profile', profileInfo, function(data) {
     //     var profile = data;
 
     //     $('#profile-info').append(members)
