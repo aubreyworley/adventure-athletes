@@ -1,9 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
 
 /* reset */
+/*.container-fluid {
 
+}*/
 body {
-  font-family: "Museo Slab", Serif;  font-size: 16px;
+  font-family: "Museo Slab", Serif;  
+  font-size: 16px;
 }
 
 /* bootstrap overrides */
