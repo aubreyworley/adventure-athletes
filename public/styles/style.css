@@ -81,12 +81,11 @@ p {
     font-size: 18px;
     line-height: 24px;
     color: #787878;
-        font-family: "Museo Slab", Serif;    
-        padding: 5px;
+    font-family: "Museo Slab", Serif;    
+    padding: 5px;
     margin-left: 20px;
     margin-right: 20px;
 }
-
 
 
 .displayphoto {
