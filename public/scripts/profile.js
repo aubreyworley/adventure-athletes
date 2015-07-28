@@ -14,7 +14,9 @@ $(function() {
         console.log(member);
 
         // pass member through profile template
-        $memberHtml = $(membersController.template({currentMember: member}));
+        $memberHtml = $(membersController.template({
+          currentMember: member
+        }));
 
         // append member HTML to page
         $('#show-member').append($memberHtml);
@@ -36,12 +38,14 @@ $(function() {
     // create new post for current member
     createPost: function(adventureData) {
       // define object with our post data
-      var postData = {adventure: adventureData};
-      
+      var postData = {
+        adventure: adventureData
+      };
+
       // AJAX call to server to POST /api/members/current/posts
       $.post('/api/members/current/posts', postData, function(newPost) {
         console.log(newPost);
-        
+
         // pass post through underscore template
         var $postHtml = $(membersController.postTemplate(newPost));
         console.log($postHtml);
@@ -51,23 +55,6 @@ $(function() {
       });
     },
 
-    // // create profile page for current member
-    // createProfile: function (profileData) {
-      
-    //   profileTemplate = _.template($('#profile-template').html());
-
-    // // define object with our sign up data
-    //   var $profileInfo = $('#profile-info');
-
-    //   $.get('/api/members/current/profile', profileInfo, function(data) {
-    //     var profile = data;
-
-    //     $('#profile-info').append(members)
-    //     console.log(profile);
-    //        });
-    // }
-    // }
-
     setupView: function() {
       // get current member
       membersController.show();
@@ -75,7 +62,7 @@ $(function() {
       // add submit event on new post form
       $('#new-post').on('submit', function(event) {
         event.preventDefault();
-        
+
         // grab post adventure from form
         var postAdventure = $('#adventure').val();
 
@@ -89,5 +76,26 @@ $(function() {
   };
 
   membersController.setupView();
+
+});
+
+// create profile page for current member
+$function() {
+
+profileTemplate = _.template($('#profile-template').html());
+
+// define object with our sign up data
+var $profile = $('#profile');
+
+$.get('/api/member', function(data) {
+  var member = data;
+
+  _.each(members, function(member, index) {
+    var $member = $(profileTemplate(member));
+    $member.attr('data-index', index);
+    $profile.append($member);
+  });
+
+});
 
 });

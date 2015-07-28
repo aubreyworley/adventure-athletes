@@ -127,3 +127,7 @@ table.table.table-bordered {
   margin-bottom: 20px;
 
 }
+
+img {
+  max-width: 100%
+}

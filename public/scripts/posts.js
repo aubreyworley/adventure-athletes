@@ -1,6 +1,6 @@
 $(function() {
 
-  // `logsController` holds log functionality
+  // `postsController` holds post functionality
   var postsController = {
 
   // compile underscore template
@@ -126,28 +126,6 @@ $(function() {
     }
   };
    
-//    $("#loginForm").validate({
-//    rules: {
-//     email: {
-//       required: true, 
-//       minlength: 2
-//     },
-//     password: {
-//       required: true,
-//       minlength: 6
-//     }
-//    },
-//    messages: {
-//     email: {
-//       required: "Please enter an email",
-//       minlength: "Your email must be at least 2 characters long"
-//     },
-//     password: {
-//       required: "Please enter a password",
-//       minlength: "Your password must be at least 6 characters long"
-//    }
-//   }
-// });
 
   postsController.addEventHandlers();
 

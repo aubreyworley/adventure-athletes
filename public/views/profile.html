@@ -74,39 +74,7 @@
 
 <div class= "container" >
   <div class = "row">
-    <div id= "profile-info">
-  <!--     <script>$(function() {
-
-  var profileTemplate = _.template($('#profile-template').html());
-
-  var $profileInfo = $('#profile-info');
-
-      $.get('/api/members/current', function(data) {
-        var profile = data;
-
-        $('#profile-info').append(members)
-        console.log(profile);
-      
-      });
-    });
-      </script> -->
-      <!-- underscore template -->
-  <script type="text/template" id="profile-template">
-  <% if (currentMember) { %>
-
-    <li class="list-group-item member" id="profile-info-<%= _id %>" data-id="<%= _id %>">
-
-  
-    <!-- profile-info -->
-       <p><b> First Name: </b><%= firstName %> </p>
-        <p><b> Last Name: <%= lastName %> </p>
-        <p><b> Email </b><%= email %></p>
-       <p> About </b><%= about %></p>
-
-        <% } %>
-
-        </script>
-
+    <div id= "profile">
     </div>
   </div>
 </div>
@@ -133,11 +101,17 @@
     <script type="text/javascript" src="scripts/main.js"></script>
     <script type="text/javascript" src="scripts/profile.js"></script>
     <script type="text/javascript" src="scripts/posts.js"></script>
-    <script type="text/javascript" src="scripts/profileTemplate.js"></script>
-
-     
-
-      
+  
+        <!-- underscore template -->
+  <script type="text/template" id="profile-template">
+    <div class="member">
+      <p><b> First Name: </b><%= firstName %> </p>
+      <p><b> Last Name: <%= lastName %> </p>
+      <p><b> Email: </b><%= email %></p>
+      <p> About: </b><%= about %></p>
+      <hr>
+    </div>
+  </script>
 
   </body>
-  </html>
+</html>
