@@ -25,6 +25,7 @@ var mongoose = require('mongoose'),
     bcrypt.genSalt(function (err, salt) {
     bcrypt.hash(memberData.password, salt, function (err, hash) {
       console.log(hash);
+      console.log(err);
 
       //create the new user (save to db) with hashed password
       that.create({
@@ -43,11 +44,12 @@ MemberSchema.statics.authenticate = function (email, password, callback) {
   //find member by email entered at log in
   this.findOne({email: email}, function (err, member) {
     console.log(member);
+    console.log(email);
 
     if (member === null) {
-      throw new Error('Can\'t find member with email ' + email);
-      } else if (member.checkPassword(password)) {
-          callback(null, member);
+      callback ('Can\'t find member with email ' + email, null);
+    } else if (member.checkPassword(password)) {
+      callback(null, member);
     }
   });
 };

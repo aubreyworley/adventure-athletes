@@ -64,15 +64,10 @@ app.get('/', function (req, res) {
 // profile page
 app.get('/profile', function (req, res) {
   // check for current (logged-in) member
-  req.currentMember(function (err, member) {
-    // show profile if logged-in member
-    if (member) {
-      res.sendFile(__dirname + '/public/views/profile.html');
-    // redirect if no member logged in
 
-    } else {
-      res.redirect('/');
-    }
+  Member.findOne({_id: req.session.memberId}, function (err, member) {
+    req.member = member;
+    res.sendFile(__dirname + '/public/views/profile.html');
   });
 });
 
@@ -83,7 +78,7 @@ app.post('/members', function (req, res) {
   var newMember = req.body.member;
   Member.createSecure(newMember, function (err, member) {
     // log in member immediately when created
-    req.login(member);
+    req.session.memberId = member.id;
     res.redirect('/profile');
   });
 });
@@ -92,9 +87,14 @@ app.post('/members', function (req, res) {
 app.post('/login', function (req, res) {
   var memberData = req.body.member;
   Member.authenticate(memberData.email, memberData.password, function (err, member) {
-    req.login(member);
-    console.log("LOGGIN IN!")
-    res.redirect('/profile');
+    console.log(member)
+    if (member) {
+      console.log("LOGGIN IN!")
+      req.session.memberId = member.id;  
+      res.redirect('/profile');
+    } else {
+      res.send(err)
+    }
   });
 });
 
@@ -110,7 +110,9 @@ app.get('/logout', function (req, res) {
 // show current member
 app.get('/api/members/current', function (req, res) {
   // check for current (logged-in) member
-  req.currentMember(function (err, member) {
+  console.log("fetching current user")
+  Member.findOne({_id: req.session.memberId}, function (err, member) {
+    req.member = member;
     res.json(member);
   });
 });
