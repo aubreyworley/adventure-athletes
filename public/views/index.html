@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Adventures</title>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adventures</title>
 
-    <!-- STYLES -->
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <!-- Normalize CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
-    <!-- custom styles-->
-    <link rel="stylesheet" href="styles/style.css">
-    <!-- mapbox-->
-    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet'/>
+  <!-- STYLES -->
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <!-- Normalize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+  <!-- custom styles-->
+  <link rel="stylesheet" href="styles/style.css">
+  <!-- mapbox-->
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet'/>
 
 </head>
 <body>
 
 
   <!-- header -->
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Adventure Athletes</a>
-        </div>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Adventure Athletes</a>
+      </div>
 
       <center>
         <div class="navbar-collapse collapse" id="navbar-main">
@@ -42,87 +42,81 @@
           <!-- login -->
           <form class="navbar-form navbar-right" method="post" action="/login" required>
             <div class="form-group" required/>
-              <input type="email" class="form-control" name="member[email]" placeholder="Email" required/>
-            </div>
-            <div class="form-group" required>
-              <input type="password" class="form-control" name="member[password]" placeholder="Password" required/>
-            </div>
-              <button type="submit" class="btn btn-default">Log In</button>
-          </form>
-        </div>
-        </center>
+            <input type="email" class="form-control" name="member[email]" placeholder="Email" required/>
+          </div>
+          <div class="form-group" required>
+            <input type="password" class="form-control" name="member[password]" placeholder="Password" required/>
+          </div>
+          <button type="submit" class="btn btn-default">Log In</button>
+        </form>
       </div>
-    </div>
-   
+    </center>
+  </div>
+</div>
 
-    <!-- data from nav-template goes here -->
-           <script type="text/template" id="nav-template">
-            <% if (currentMember) { %>
-              <li><a href="/profile">Profile</a></li>
-              <li><a href="/logout">Log Out</a></li>
-            <% } else { %>
-              <li><a href="#" data-toggle="modal" data-target="#signup-modal">Sign Up</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#login-modal">Log In</a></li>
-            <% } %>
-          </script>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container -->
-    
+<!-- data from nav-template goes here -->
+<script type="text/template" id="nav-template">
+<% if (currentMember) { %>
+  <li><a href="/profile">Profile</a></li>
+  <li><a href="/logout">Log Out</a></li>
+  <% } else { %>
+    <li><a href="#" data-toggle="modal" data-target="#signup-modal">Sign Up</a></li>
+    <li><a href="#" data-toggle="modal" data-target="#login-modal">Log In</a></li>
+    <% } %>
+    </script>
+  </ul>
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container -->
 
 <div class="container">
+  <h1>Bay Area Adventure Athletes</h1>
+  <p>Train For the Outdoors, in the Outdoors.</p>
+</div>
 
-      <h1>Bay Area Adventure Athletes</h1>
-      <p>Train For the Outdoors, in the Outdoors.</p>
-    </div>
-  
-  
+<div class="container">
+  <img> <a href="http://imgur.com/tv3pU01"><img src="http://i.imgur.com/tv3pU01.jpg?1" title="source: imgur.com" /></a></img>
+</div>
 
-  <div class="container">
-    <img> <a href="http://imgur.com/tv3pU01"><img src="http://i.imgur.com/tv3pU01.jpg?1" title="source: imgur.com" /></a> </img>
-  </div>
+<div class="container">
+  <h1>About</h1>
+  <p> With all the fitness trends and expensive gyms, it can be difficult to find an affordable fitness community of adventure athletes who train for the outdoors in the outdoors. This Mountaineer Training Group provides exactly that: a place for people to train together, plan trips together, and work towards conquering that next mountain peak together.</p>
+</div>
 
-  <div class="container">
-      <h1>About</h1>
-        <p> With all the fitness trends and expensive gyms, it can be difficult to find an affordable fitness community of adventure athletes who train for the outdoors in the outdoors. This Mountaineer Training Group provides exactly that: a place for people to train together, plan trips together, and work towards conquering that next mountain peak together.</p>
-    </div>
-
-  <div class="container">
-    <h3>Outdoor Workout Meetups</h3>
-    <p>This Week's Workout Schedule @ 6:30pm:</p>
-    <table class="table table-bordered">
-
-      <thead>
-        <tr>
-          <th>Sunday</th>
-          <th>Monday</th>
-          <th>Tuesday</th>
-          <th>Wednesday</th>
-          <th>Thursday</th>
-          <th>Friday</th>
-          <th>Saturday</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-          <td>Strength and Power Training</td>
-          <td></td>
-          <td>Aerobic Interval Training </td>
-          <td></td>
-          <td>Balance and Agility Training</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-    <p> Workout Locations: </p>
-  </div>
+<div class="container">
+  <h3>Outdoor Workout Meetups</h3>
+  <p>This Week's Workout Schedule @ 6:30pm:</p>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td>Strength and Power Training</td>
+        <td></td>
+        <td>Aerobic Interval Training </td>
+        <td></td>
+        <td>Balance and Agility Training</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <p> Workout Locations: </p>
+</div>
 
 <!-- Workout Locations Map -->
 <div class="container">
-<div class="row" id= "map" align="center">
-  <iframe width='70%' height='300px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/aworley.98f9c235/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoiYXdvcmxleSIsImEiOiIxNGRlYmM2ZmM0YmMxY2VlZjQ4NTMyY2Q4OWQ0M2I0OSJ9.pIOJ95hk0i-6hzOvqhU7zw'></iframe>
-</div>
+  <div class="row" id= "map" align="center">
+    <iframe width='70%' height='300px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/aworley.98f9c235/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoiYXdvcmxleSIsImEiOiIxNGRlYmM2ZmM0YmMxY2VlZjQ4NTMyY2Q4OWQ0M2I0OSJ9.pIOJ95hk0i-6hzOvqhU7zw'></iframe>
+  </div>
 </div>
 
 <div class="container" id="next-trip">
@@ -130,116 +124,112 @@
     <h3>Plan Your Next Trip </h3>
   </div>
 </div>
-        <!-- new post form-->
-  <div class="container" align="center">
-    <div class="row">
-      
-      <form class="pure-form" id="new-post">
-        <div class="pure-input-1">
-          <input type="text" class="form-control" id="adventure" placeholder="What's Your Next Adventure?" autofocus>
-        </div>
-        <br>
-        <div>
-          <input type="submit" class="btn btn-success" value="Post">
-        </div>
-      </form>
+
+<!-- new post form-->
+<div class="container" align="center">
+  <div class="row">
+    <form class="pure-form" id="new-post">
+      <div class="pure-input-1">
+        <input type="text" class="form-control" id="adventure" placeholder="What's Your Next Adventure?" autofocus>
+      </div>
       <br>
-
-      <!-- list of posts -->
-      <ul class= 'list-group' id = 'post-list'></ul>
-    </div>
-  </div>
-  
-
-<!-- new member sign up form-->
-  <div class="well">
-    <div class="container" id="signup-modal">
-      
-        <footer class ="site-footer">
-    <div class="col-sm-5 form-box">
-      <div class="form-top">
-        <div class="form-top-left">
-        <h3>Become a Member</h3>
-            <p>Fill in the form below to get weekly workout schedules and Mountaineer Meetup Info:</p>
-        </div>
-        <div class="form-top-right">
-          <i class="fa fa-pencil"></i>
-        </div>
+      <div>
+        <input type="submit" class="btn btn-success" value="Post">
       </div>
-      <div class="form-bottom">
-        <form role="form" action="/members" method="post" class="registration-form">
-          <div class="form-group">
-            <label class="sr-only" for="form-first-name">First name</label>
-            <input type="text" name="member[firstName]" placeholder="First name" class="form-first-name form-control" id="form-first-name">
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="form-last-name">Last name</label>
-            <input type="text" name="member[lastName]" placeholder="Last name" class="form-last-name form-control" id="form-last-name">
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="form-about-yourself">About yourself</label>
-            <textarea name="member[about]" placeholder="About yourself" class="form-about-yourself form-control" id="form-about-yourself"></textarea>
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="form-email">Email</label>
-            <input type="email" name="member[email]" placeholder="Email" class="form-email form-control" id="form-email">
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="form-password">password</label>
-            <input type="password" name="member[password]" placeholder="Password" class="form-email form-control" id="form-email">
-          </div>
-          <button type="submit" class="btn">Sign me up!</button>
-        </form>
-      </div>
-    </div>
-  </footer>
-  </div>
+    </form>
+    <br>
+    <!-- list of posts -->
+    <ul class= 'list-group' id = 'post-list'></ul>
   </div>
 </div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript for Bootstrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <!-- Latest compiled and minified JavaScript for Underscore.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-
-  <!-- custom scripts -->
-  
-  <script src="scripts/posts.js"></script>
- 
-   <script src="scripts/profile.js"></script>
-   <script src="scripts/main.js"></script>
-
-  <!-- validation scripts -->
-  <script src="scripts/jquery.validate.js"></script>
-
-
-  <!-- underscore template -->
-  <script type="text/template" id="post-template">
-    <li class="list-group-item post" id="post-<%= _id %>" data-id="<%= _id %>">
-  
-    <!-- post label (adventure) -->
-        <%= adventure %>
-
-    <!-- delete button -->
-      <button class="close right-side delete-post" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-
-       <!-- edit link (pencil icon) to toggle form -->
-      <a class="edit-pencil" data-toggle="collapse" data-target="#update-<%= _id %>">
-        <span class="glyphicon glyphicon-pencil edit"></span>
-      </a>
-
-       <!-- form to update post -->
-      <div class="collapse" id="update-<%= _id %>">
-        <br>
-        <form class="pure-form update-post">
-          <input type="text" class="form-control adventure" value="<%= adventure %>" placeholder="New adventure?">
-          <input type="submit" class="btn btn-default" value="Update Post">
-        </form>
+<!-- new member sign up form-->
+<div class="well">
+  <div class="container" id="signup-modal">
+    <footer class ="site-footer">
+      <div class="col-sm-5 form-box">
+        <div class="form-top">
+          <div class="form-top-left">
+            <h3>Become a Member</h3>
+            <p>Fill in the form below to get weekly workout schedules and Mountaineer Meetup Info:</p>
+          </div>
+          <div class="form-top-right">
+            <i class="fa fa-pencil"></i>
+          </div>
+        </div>
+        <div class="form-bottom">
+          <form role="form" action="/members" method="post" class="registration-form">
+            <div class="form-group">
+              <label class="sr-only" for="form-first-name">First name</label>
+              <input type="text" name="member[firstName]" placeholder="First name" class="form-first-name form-control" id="form-first-name">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="form-last-name">Last name</label>
+              <input type="text" name="member[lastName]" placeholder="Last name" class="form-last-name form-control" id="form-last-name">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="form-about-yourself">About yourself</label>
+              <textarea name="member[about]" placeholder="About yourself" class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="form-email">Email</label>
+              <input type="email" name="member[email]" placeholder="Email" class="form-email form-control" id="form-email">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="form-password">password</label>
+              <input type="password" name="member[password]" placeholder="Password" class="form-email form-control" id="form-email">
+            </div>
+            <button type="submit" class="btn">Sign me up!</button>
+          </form>
+        </div>
       </div>
+    </footer>
+  </div>
+</div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript for Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified JavaScript for Underscore.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+<!-- custom scripts -->
+
+<script src="scripts/posts.js"></script>
+
+<script src="scripts/profile.js"></script>
+<script src="scripts/main.js"></script>
+
+<!-- validation scripts -->
+<script src="scripts/jquery.validate.js"></script>
+
+<!-- underscore template -->
+<script type="text/template" id="post-template">
+<li class="list-group-item post" id="post-<%= _id %>" data-id="<%= _id %>">
+
+<!-- post label (adventure) -->
+<%= adventure %>
+
+<!-- delete button -->
+<button class="close right-side delete-post" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+
+<!-- edit link (pencil icon) to toggle form -->
+<a class="edit-pencil" data-toggle="collapse" data-target="#update-<%= _id %>">
+<span class="glyphicon glyphicon-pencil edit"></span>
+</a>
+
+<!-- form to update post -->
+<div class="collapse" id="update-<%= _id %>">
+<br>
+<form class="pure-form update-post">
+<input type="text" class="form-control adventure" value="<%= adventure %>" placeholder="New adventure?">
+<input type="submit" class="btn btn-default" value="Update Post">
+</form>
+</div>
 
 
 </body>

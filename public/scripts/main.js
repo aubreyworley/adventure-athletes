@@ -1,11 +1,7 @@
 $(function() {
 
-
-
   // `mainController` holds shared site functionality
   var mainController = {
-
-
 
     // compile underscore template for nav links
     navTemplate: _.template($('#nav-template').html()),
